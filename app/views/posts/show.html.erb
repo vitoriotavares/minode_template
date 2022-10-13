@@ -1,0 +1,14 @@
+<h1 class="ui dividing header"><%= Post.model_name.human %></h1>
+<div class="ui green segment">
+      <p>
+      <strong><%= Post.human_attribute_name :primeiro %>:</strong>
+      <%= @post.primeiro %>
+    </p>
+      <p>
+      <strong><%= Post.human_attribute_name :segundo %>:</strong>
+      <%= @post.segundo %>
+    </p>
+  </div>
+
+<%= link_to(t('helpers.links.back'), posts_path, class: 'ui button white') %>
+<%= link_to t('helpers.links.edit'), edit_post_path(@post), class: 'ui green button' %>

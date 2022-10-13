@@ -1,0 +1,8 @@
+<h1 class="ui dividing header"><%= t('helpers.titles.edit', model: Post.model_name.human) %></h1>
+<%= turbo_frame_tag @post do %>
+  <div class="grid grid-cols-12 gap-6 mt-5">
+      <div class="intro-y col-span-12 lg:col-span-12">
+        <%= render 'form', post: @post %>
+      </div>
+  </div>
+<% end %>

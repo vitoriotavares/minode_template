@@ -11,6 +11,17 @@ module Minode
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.i18n.default_locale = 'pt-BR'
+    config.time_zone = 'America/Fortaleza'
+    config.active_record.default_timezone = :local
+    config.active_record.time_zone_aware_attributes = false
+
+    config.generators do |g|
+      g.orm             :active_record
+      g.template_engine :erb
+      g.test_framework  :test_unit, fixture: false
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
