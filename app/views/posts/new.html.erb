@@ -3,10 +3,12 @@
       <%= t('helpers.titles.new', model: Post.model_name.human) %>
     </h2>
 </div>
-<%= turbo_frame_tag @post do %>
-  <div class="grid grid-cols-12 gap-6 mt-5">
-      <div class="intro-y col-span-12 lg:col-span-12">
-        <%= render 'form', post: @post %>
-      </div>
+<%= turbo_frame_tag :turbo_modal do %>
+  <div data-controller='turbomodal' data-action="turbo:submit-end->turbomodal">
+    <div class="grid grid-cols-12 gap-6 mt-5">
+        <div class="intro-y col-span-12 lg:col-span-12">
+          <%= render 'form', post: @post %>
+        </div>
+    </div>
   </div>
 <% end %>

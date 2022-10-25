@@ -8,27 +8,28 @@
         <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
         <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_importmap_tags %>
     </head>
     <!-- END: Head -->
     <body class="py-5 md:py-0 bg-black/[0.15] dark:bg-transparent">
-        <!-- BEGIN: Mobile Menu -->
-        <%= render 'layouts/menu_mobile' %>
-        <!-- END: Mobile Menu -->
-        <div class="flex overflow-hidden">
-            <!-- BEGIN: Side Menu -->
-            <%= render 'layouts/side_menu' %>
-            <!-- END: Side Menu -->
-            <!-- BEGIN: Content -->
-            <div class="content">
-                <!-- BEGIN: Top Bar -->
-                <%= render 'layouts/top_bar' %>
-                <!-- END: Top Bar -->
-                <%= yield %>
+        <div id="app" data-controller="app">
+            <!-- BEGIN: Mobile Menu -->
+            <%= render 'layouts/menu_mobile' %>
+            <!-- END: Mobile Menu -->
+            <div class="flex overflow-hidden">
+                <!-- BEGIN: Side Menu -->
+                <%= render 'layouts/side_menu' %>
+                <!-- END: Side Menu -->
+                <!-- BEGIN: Content -->
+                <div class="content">
+                    <!-- BEGIN: Top Bar -->
+                    <%= render 'layouts/top_bar' %>
+                    <!-- END: Top Bar -->
+                    <%= yield %>
+                </div>
+                <!-- END: Content -->
             </div>
-            <!-- END: Content -->
+            <meta name="viewport" content="width=device-width,initial-scale=1">
         </div>
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-    
-        <%= javascript_importmap_tags %>
     </body>
 </html>

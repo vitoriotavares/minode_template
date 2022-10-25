@@ -1,0 +1,14 @@
+<tr id='<%= dom_id post %>' class="intro-x">
+    <td class="text-left" ><%= post.primeiro %></td>
+    <td class="text-left" ><%= post.segundo %></td>
+    <td class="table-report__action w-56">
+        <div class="flex justify-center items-center">
+        <%= link_to edit_post_path(post), class: 'flex items-center mr-3' do %>
+            <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit
+        <% end %>
+        <%= link_to post, data: { turbo_method: :delete, turbo_confirm: t('messages.destroy.confirm') }, class: 'flex items-center text-danger' do %>
+            <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete
+        <% end %>
+        </div>
+    </td>
+</tr>

@@ -1,9 +1,10 @@
 <h2 class="intro-y text-lg font-medium mt-10">
   <%= Post.model_name.human.pluralize %>
 </h2>
+<%#= turbo_frame_tag :turbo_modal %>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <%= link_to t('helpers.links.new'), new_post_path, data: { turbo_frame: dom_id(Post.new), tw_toggle: "modal", tw_target: "#new-post-modal" }, class: 'btn btn-primary shadow-md mr-2' %>
+        <%= link_to t('helpers.links.new'), new_post_path, data: { turbo_frame: 'turbo_modal', action: "click->app#launchModal" }, class: 'btn btn-primary shadow-md mr-2' %>
         <div class="dropdown">
             <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
                 <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4" data-lucide="plus"></i> </span>
@@ -40,23 +41,8 @@
                     <th class="text-center whitespace-nowrap"><%= t('helpers.actions') %></th>
                 </tr>
             </thead>
-            <tbody>
-              <% @posts.each do |post| %>
-                <tr class="intro-x">
-                  <td class="text-left" ><%= post.primeiro %></td>
-                  <td class="text-left" ><%= post.segundo %></td>
-                  <td class="table-report__action w-56">
-                    <div class="flex justify-center items-center">
-                      <%= link_to edit_post_path(post), data: { turbo_frame: dom_id(Post.new), tw_toggle: "modal", tw_target: "#new-post-modal" }, class: 'flex items-center mr-3' do %>
-                        <i data-lucide="check-square" class="w-4 h-4 mr-1"></i> Edit
-                      <% end %>
-                      <%= link_to post, data: { turbo_method: :delete, turbo_confirm: t('messages.destroy.confirm') }, class: 'flex items-center text-danger' do %>
-                        <i data-lucide="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                      <% end %>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
+            <tbody id='posts'>
+              <%= render partial: 'posts/tr_post', collection: @posts, as: :post %>
             </tbody>
         </table>
     </div>
@@ -94,21 +80,6 @@
     <!-- END: Pagination -->
 </div>
 
-<!-- BEGIN: Delete Confirmation Modal -->
-<div id="new-post-modal" class="modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <!-- BEGIN: Modal Header -->
-          <div class="modal-header">
-              <h2 class="font-medium text-base mr-auto">
-                  New Post
-              </h2>
-          </div>
-          <!-- END: Modal Header -->
-          <div class="modal-body p-0">
-            <%= turbo_frame_tag Post.new, target: "_top" %>
-          </div>
-      </div>
-  </div>
-</div>
-<!-- END: Delete Confirmation Modal -->
+<!-- BEGIN: New post Modal -->
+<%= render(ModalComponent.new(header: 'New Post', body: turbo_frame_tag(:turbo_modal, target: "_top"))) %>
+<!-- END: New Post Modal -->
