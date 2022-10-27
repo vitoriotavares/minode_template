@@ -14,7 +14,7 @@ development:
   <<: *default
   database: minode_development
   username: vitorio
-  password: 12345678
+  password: 600425
   host: localhost
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

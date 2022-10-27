@@ -39,7 +39,12 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      redirect_to posts_url, notice: t('messages.destroy.notice')
+      # redirect_to posts_url, notice: t('messages.destroy.notice')
+      # respond_to do |format|
+      #   format.turbo_stream do
+      #     render turbo_stream: turbo_stream.remove('posts', partial: 'posts/tr_post', locals: { post: @post })
+      #   end
+      # end
     else
       redirect_to posts_url, alert: @post.errors
     end
