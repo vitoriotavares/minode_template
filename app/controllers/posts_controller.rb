@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to posts_url, notice: I18n.t('messages.create.notice') }
+        # format.html { redirect_to posts_url, notice: I18n.t('messages.create.notice') }
         format.turbo_stream do
           render turbo_stream: turbo_stream.prepend('posts', partial: 'posts/tr_post', locals: { post: @post })
         end

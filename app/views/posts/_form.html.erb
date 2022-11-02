@@ -1,9 +1,12 @@
 <!-- BEGIN: Form Layout -->
 <div class="intro-y box p-5">
-  <%= form_for @post do |f| %>
+  <%= form_for @post, class: "validate-form" do |f| %>
       <%= form_error_notification(@post) %>
-      <div class="mt-3">
-        <%= f.label :primeiro, class:"form-label" %>
+      <div class="mt-3 input-form">
+        <label for="validation-form-1" class="form-label w-full flex flex-col sm:flex-row"> 
+          Primeiro 
+          <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Obrigatório, com no mínimo 2 caracteres.</span> 
+        </label>
         <%= f.text_field :primeiro, class: 'form-control w-full', placeholder: true  %>
       </div>
       <div class="mt-3">
